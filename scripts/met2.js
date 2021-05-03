@@ -1,25 +1,3 @@
-//array con posibles numeros y variables a utilizar
-var nums = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  0,
-  "X",
-  "Y",
-  "Z",
-  "W",
-  "T",
-  "V",
-  "A",
-  "B",
-  "C",
-];
 // array con las operaciones
 var operators = ["/", "*", "+", "-", "^", "("];
 
@@ -34,22 +12,16 @@ const pPila = (i) => {
   switch (i) {
     case "^":
       return 3;
-      break;
     case "*":
       return 2;
-      break;
     case "/":
       return 2;
-      break;
     case "+":
       return 1;
-      break;
     case "-":
       return 1;
-      break;
     case "(":
       return 0;
-      break;
     default:
       break;
   }
@@ -59,22 +31,16 @@ const pExpresion = (i) => {
   switch (i) {
     case "^":
       return 4;
-      break;
     case "*":
       return 2;
-      break;
     case "/":
       return 2;
-      break;
     case "+":
       return 1;
-      break;
     case "-":
       return 1;
-      break;
     case "(":
       return 5;
-      break;
     default:
       break;
   }
@@ -92,7 +58,7 @@ const NotacionPostfija = () => {
   const pila = new Pila();
 
   for (let item of expresionArr) {
-    if (nums.some((i) => i == item)) {
+    if (/\d/g.test(item) || /\w/g.test(item)) {
       //si el termino es un numero se añade a la ecuacion
       postfija += `${item}`;
     } else if (operators.some((i) => i == item)) {
@@ -118,9 +84,9 @@ const NotacionPostfija = () => {
     postfija += pila.pop();
   }
 
-  var relPosfija = postfija.replace("(", "");
+  var expresionRegular = /[()]/g;
+  var relPosfija = postfija.replace(expresionRegular, "");
 
-  // alert(relPosfija);
   var resl = document.getElementById("result");
   resl.innerHTML = relPosfija;
 };
