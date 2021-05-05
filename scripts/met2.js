@@ -89,6 +89,68 @@ const NotacionPostfija = () => {
 
   var resl = document.getElementById("result");
   resl.innerHTML = relPosfija;
+  evaluar(relPosfija);
+};
+
+const evaluar = async (relPostfija) => {
+  // se remplaza la x por 2
+  var expresion = /X/g;
+  var expresionArr = relPostfija.replace(
+    expresion,
+    parseInt(document.getElementById("valueX").value)
+  );
+  //pila de numeros
+  const pilaNums = new Pila();
+  //resultado final
+  var resultado = 0;
+
+  for (let item of expresionArr) {
+    //si es digito lo añade a la pila de digitos
+    if (/\d/g.test(item)) {
+      pilaNums.push(item);
+      // si es operador saca los elementos y los opera
+    } else if (operators.some((i) => i == item)) {
+      if (pilaNums.size() > 0) {
+        //parse el valor sacado a entero
+        var val1 = parseInt(pilaNums.pop());
+        var val2 = parseInt(pilaNums.pop());
+        // auxiliar que almacena el resultado de cada operacion
+        var rel = 0;
+        // switch que identifica que operacion se debe realizar
+        switch (item) {
+          case "+":
+            rel = val1 + val2;
+            pilaNums.push(rel);
+            break;
+          case "^":
+            rel = Math.pow(val2, val1);
+            pilaNums.push(rel);
+            break;
+          case "*":
+            rel = val2 * val1;
+            pilaNums.push(rel);
+            break;
+          case "/":
+            rel = val2 / val1;
+            pilaNums.push(rel);
+            break;
+          case "-":
+            rel = val2 - val1;
+            pilaNums.push(rel);
+            break;
+          default:
+            break;
+        }
+        console.log(rel);
+        // observa en cada iteracion que sucede y cambia el valor global del resultado
+        resultado = pilaNums.peek();
+      }
+    }
+  }
+
+  var resl = document.getElementById("resultE");
+  resl.innerHTML = resultado;
+  // alert(resultado);
 };
 
 // clase pila con las operaciones basicas

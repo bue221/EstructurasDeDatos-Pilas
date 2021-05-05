@@ -16,7 +16,17 @@
       <h1 class="text-4xl font-bold text-center mb-6">
         Notacion infija a postfija
       </h1>
-      <div class="relative mr-6 m-2 flex gap-3 justify-center">
+      <div class="relative mr-6 m-2 flex gap-3 justify-center items-center">
+        <div class="relative mr-6 m-2 flex gap-3 justify-center items-center">
+          <h1 class="text-xl font-bold w-full">Valor de X:</h1>
+          <input
+            type="text"
+            id="valueX"
+            name="valueX"
+            class="bg-purple-white shadow rounded border-0 p-3"
+            placeholder="Ingresa el valor de x"
+          />
+        </div>
         <input
           type="text"
           id="infija"
@@ -28,14 +38,20 @@
           class="px-6 border-2 border-black hover:border-gray-500 rounded bg-grey-200"
           onclick="NotacionPostfija()"
         >
-          Transformar
+          Transformar y evaluar
         </button>
       </div>
       <div class="flex items-center">
         <h1 class="text-xl font-bold text-center ml-6">
           Resultado en notacion postfija:
         </h1>
-        <p id="result">...</p>
+        <p class="w-1/2 mx-3 text-2xl" id="result">...</p>
+      </div>
+      <div class="flex items-center">
+        <h1 class="text-xl font-bold text-center ml-6">
+          Evaluacion de la notacion postfija:
+        </h1>
+        <p class="w-1/2 mx-3 text-2xl" id="resultE">...</p>
       </div>
     </div>
   </body>
